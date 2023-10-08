@@ -12,8 +12,13 @@ class _Peli2State extends State<Peli2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return GestureDetector(
+      onVerticalDragEnd: (details) {
+        setState(() {
+          showInfo = !showInfo;
+        });
+      },
+      child: Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -36,6 +41,7 @@ class _Peli2State extends State<Peli2> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    //Arreglar iconos
                     IconButton(
                       icon: const Icon(
                         Icons.thumb_down,

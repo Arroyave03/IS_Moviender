@@ -17,3 +17,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/rollo.png
+    - assets/images/pelicula1.jpg
+    - assets/images/pelicula2.jpg

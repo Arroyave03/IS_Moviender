@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_is/movie_opp.dart';
+import 'dart:math' as math;
+
+import 'package:test_is/movies.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -20,7 +24,15 @@ class LoginPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Spacer(flex: 3),
+          Transform.rotate(
+            angle: -25 * (math.pi / 180),
+            child: Image.asset(
+              'assets/images/rollo.png',
+              width: 400,
+              height: 300,
+            ),
+          ),
+          const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100.0),
             child: TextFormField(
@@ -40,7 +52,13 @@ class LoginPage extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Peli1(),
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               primary: Colors.pink[500],
               shape: RoundedRectangleBorder(

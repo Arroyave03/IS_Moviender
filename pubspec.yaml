@@ -20,5 +20,11 @@ flutter:
 
   assets:
     - assets/images/rollo.png
+    - assets/images/like.png
+    - assets/images/dislike.png
+    - assets/images/flecha.png
     - assets/images/pelicula1.jpg
     - assets/images/pelicula2.jpg
+    - assets/images/pelicula3.png
+    - assets/images/perfil_pequenno.png
+    - assets/images/perfil_usuario.png

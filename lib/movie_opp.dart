@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_is/login_page.dart';
 import 'package:test_is/movie_inter.dart';
+import 'package:test_is/user_page.dart';
 
 class Peli1 extends StatefulWidget {
   @override
@@ -13,10 +14,15 @@ class _Peli1State extends State<Peli1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
+    return Stack(
+      children: [
+        GestureDetector(
+          onVerticalDragEnd: (details) {
+            setState(() {
+              showInfo = !showInfo;
+            });
+          },
+          child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/pelicula1.jpg'),
@@ -24,67 +30,163 @@ class _Peli1State extends State<Peli1> {
               ),
             ),
           ),
-          if (!showInfo)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.thumb_down,
-                        color: Colors.white,
-                      ), //Image.asset('assets/images/dislike.jpg'),
+        ),
+        if (!showInfo)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.3),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/dislike.png',
+                        width: 34,
+                        height: 34,
+                      ),
                       onPressed: _left,
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/flecha.png',
+                        width: 34,
+                        height: 34,
                       ),
                       onPressed: _back,
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.thumb_up,
-                        color: Colors.white,
-                      ), //Image.asset('assets/images/like.jpg'),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/like.png',
+                        width: 34,
+                        height: 34,
+                      ),
                       onPressed: _right,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          if (showInfo)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                decoration: const BoxDecoration(
-                  color: Color(0XFF21252E),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Información',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
+          ),
+        if (showInfo)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              height: MediaQuery.of(context).size.height / 2,
+              decoration: const BoxDecoration(
+                color: Color(0XFF21252E),
+              ),
+              child: Stack(
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'El físico J Robert Oppenheimer trabaja con un equipo de científicos durante el Proyecto Manhattan, que condujo al desarrollo de la bomba atómica.',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Duración:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        '3 horas.',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Género:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Drama/Historia',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Dirigido por:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Christopher Nolan',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 65,
+                      height: 65,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: IconButton(
+                          icon: Image.asset(
+                            'assets/images/perfil_pequenno.png',
+                            fit: BoxFit.cover,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => User(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 

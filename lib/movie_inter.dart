@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_is/movie_opp.dart';
+import 'package:test_is/user_page.dart';
 
 class Peli2 extends StatefulWidget {
   @override
@@ -12,15 +13,15 @@ class _Peli2State extends State<Peli2> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onVerticalDragEnd: (details) {
-        setState(() {
-          showInfo = !showInfo;
-        });
-      },
-      child: Stack(
-        children: [
-          Container(
+    return Stack(
+      children: [
+        GestureDetector(
+          onVerticalDragEnd: (details) {
+            setState(() {
+              showInfo = !showInfo;
+            });
+          },
+          child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/pelicula2.jpg'),
@@ -28,68 +29,163 @@ class _Peli2State extends State<Peli2> {
               ),
             ),
           ),
-          if (!showInfo)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    //Arreglar iconos
-                    IconButton(
-                      icon: const Icon(
-                        Icons.thumb_down,
-                        color: Colors.white,
-                      ), //Image.asset('assets/images/dislike.jpg'),
+        ),
+        if (!showInfo)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.3),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/dislike.png',
+                        width: 34,
+                        height: 34,
+                      ),
                       onPressed: _left,
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/flecha.png',
+                        width: 34,
+                        height: 34,
                       ),
                       onPressed: _back,
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.thumb_up,
-                        color: Colors.white,
-                      ), //Image.asset('assets/images/like.jpg'),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      icon: Image.asset(
+                        'assets/images/like.png',
+                        width: 34,
+                        height: 34,
+                      ),
                       onPressed: _right,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          if (showInfo)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                decoration: const BoxDecoration(
-                  color: Color(0XFF21252E),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Información',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
+          ),
+        if (showInfo)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              height: MediaQuery.of(context).size.height / 2,
+              decoration: const BoxDecoration(
+                color: Color(0XFF21252E),
+              ),
+              child: Stack(
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Un equipo de exploradores viaja más allá de esta galaxia a través de un recién descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas.',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Duración:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        '2 h 42 min.',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Género:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Drama/Ciencia ficción',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Dirigido por:',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Christopher Nolan',
+                        style: TextStyle(
+                          fontFamily: 'ABeeZee',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 65,
+                      height: 65,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: IconButton(
+                          icon: Image.asset(
+                            'assets/images/perfil_pequenno.png',
+                            fit: BoxFit.cover,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => User(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 
